@@ -39,7 +39,7 @@
       "Properties" : {
         "ApplicationName" : { "Ref" : "SampleApplication" },
         "Description" :  "AWS Elastic Beanstalk Environment running Docker Sample Application",
-        "SolutionStackName" : "64bit Amazon Linux 2014.09 v1.0.9 running Docker 1.2.0",
+        "SolutionStackName" : "64bit Amazon Linux 2015.09 v2.0.4 running Docker 1.7.1",
         "VersionLabel" : "Initial Version",
         "OptionSettings": [
           {

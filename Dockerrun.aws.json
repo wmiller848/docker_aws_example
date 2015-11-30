@@ -1,3 +1,80 @@
 {
-  "AWSEBDockerrunVersion": "1"
+  "AWSEBDockerrunVersion": "2",
+  "volumes": [
+   {
+     "name": "golang-app",
+     "host": {
+       "sourcePath": "/var/app/current/main.go"
+     }
+   },
+   {
+     "name": "nginx-conf",
+     "host": {
+       "sourcePath": "/var/app/current/nginx.conf"
+     }
+   },
+   {
+     "name": "access_logs",
+     "host": {
+       "sourcePath": "/var/app/current/access_logs"
+     }
+   },
+   {
+     "name": "error_logs",
+     "host": {
+       "sourcePath": "/var/app/current/error_logs"
+     }
+   }
+ ],
+ "containerDefinitions": [
+   {
+     "name": "golang-app",
+     "environment": [
+       {
+         "name": "Container",
+         "value": "Golang"
+       }
+     ],
+     "essential": true,
+     "memory": 128,
+     "portMappings": [
+       {
+         "hostPort": 1337,
+         "containerPort": 1337
+       }
+     ],
+     "links": [],
+     "mountPoints": []
+   },
+   {
+     "name": "nginx-proxy",
+     "image": "nginx:1.9.7",
+     "essential": true,
+     "memory": 128,
+     "portMappings": [
+       {
+         "hostPort": 80,
+         "containerPort": 80
+       }
+     ],
+     "links": [
+       "golang-app"
+     ],
+     "mountPoints": [
+       {
+         "sourceVolume": "nginx-conf",
+         "containerPath": "/etc/nginx/nginx.conf",
+         "readOnly": true
+       },
+       {
+         "sourceVolume": "access_logs",
+         "containerPath": "/var/log/nginx_access.log"
+       },
+       {
+         "sourceVolume": "error_logs",
+         "containerPath": "/var/log/nginx_error.log"
+       }
+     ]
+   }
+ ]
 }
