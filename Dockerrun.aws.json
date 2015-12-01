@@ -29,6 +29,7 @@
  "containerDefinitions": [
    {
      "name": "golang-app",
+     "image": "docker.ctct.lol/social/golang:1.5.1",
      "environment": [
        {
          "name": "Container",
@@ -44,7 +45,12 @@
        }
      ],
      "links": [],
-     "mountPoints": []
+     "mountPoints": [
+       {
+         "sourceVolume": "golang-app",
+         "containerPath": "/go/src/app/main.go"
+       }
+     ]
    },
    {
      "name": "nginx-proxy",

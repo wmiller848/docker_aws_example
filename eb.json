@@ -2,6 +2,10 @@
   "AWSTemplateFormatVersion" : "2010-09-09",
   "Description" : "AWS CloudFormation Docker Test",
   "Parameters" : {
+    "KeyName": {
+      "Type": "AWS::EC2::KeyPair::KeyName",
+      "Description": "Name of an existing EC2 KeyPair to enable SSH access to the EC2 instances"
+    },
     "Subnets": {
       "Type": "CommaDelimitedList",
       "Description": "Subnets"
@@ -42,6 +46,11 @@
         "SolutionStackName" : "64bit Amazon Linux 2015.09 v2.0.4 running Docker 1.7.1",
         "VersionLabel" : "Initial Version",
         "OptionSettings": [
+          {
+             "Namespace" : "aws:autoscaling:launchconfiguration",
+             "OptionName" : "EC2KeyName",
+             "Value" : { "Ref" : "KeyName" }
+          },
           {
             "Namespace": "aws:autoscaling:launchconfiguration",
             "OptionName": "InstanceType",
