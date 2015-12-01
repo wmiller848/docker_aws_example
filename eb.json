@@ -28,10 +28,10 @@
     }
   },
   "Resources" : {
-    "SampleApplication" : {
+    "DockerApplication" : {
       "Type" : "AWS::ElasticBeanstalk::Application",
       "Properties" : {
-        "Description" : "AWS Elastic Beanstalk Docker Sample Application",
+        "Description" : "AWS Elastic Beanstalk Docker Application",
         "ApplicationVersions" : [{
           "VersionLabel" : "Initial Version",
           "Description" : "Version 1.0",
@@ -42,11 +42,11 @@
         }]
       }
     },
-    "SampleEnvironment" : {
+    "DockerEnvironment" : {
       "Type" : "AWS::ElasticBeanstalk::Environment",
       "Properties" : {
-        "ApplicationName" : { "Ref" : "SampleApplication" },
-        "Description" :  "AWS Elastic Beanstalk Environment running Docker Sample Application",
+        "ApplicationName" : { "Ref" : "DockerApplication" },
+        "Description" :  "AWS Elastic Beanstalk Environment running Docker Application",
         "SolutionStackName" : "64bit Amazon Linux 2015.09 v2.0.4 running Multi-container Docker 1.7.1 (Generic)",
         "VersionLabel" : "Initial Version",
         "OptionSettings": [
@@ -86,7 +86,7 @@
   "Outputs" : {
     "URL" : {
       "Description" : "The URL of the Elastic Beanstalk environment",
-      "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : ["SampleEnvironment", "EndpointURL"] }]]}
+      "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : ["DockerEnvironment", "EndpointURL"] }]]}
     }
   }
 }
