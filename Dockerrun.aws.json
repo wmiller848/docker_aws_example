@@ -29,7 +29,7 @@
  "containerDefinitions": [
    {
      "name": "golang-app",
-     "image": "docker.ctct.lol/social/golang:1.5.1",
+     "image": "constantcontact/golang:1.5.1",
      "environment": [
        {
          "name": "Container",

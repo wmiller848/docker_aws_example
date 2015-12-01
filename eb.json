@@ -6,7 +6,11 @@
       "Type": "AWS::EC2::KeyPair::KeyName",
       "Description": "Name of an existing EC2 KeyPair to enable SSH access to the EC2 instances"
     },
-    "Subnets": {
+    "PublicSubnets": {
+      "Type": "CommaDelimitedList",
+      "Description": "Subnets"
+    },
+    "PrivateSubnets": {
       "Type": "CommaDelimitedList",
       "Description": "Subnets"
     },
@@ -65,14 +69,14 @@
             "Namespace": "aws:ec2:vpc",
             "OptionName": "Subnets",
             "Value" : {
-              "Fn::Join": [",", { "Ref" : "Subnets" }]
+              "Fn::Join": [",", { "Ref" : "PrivateSubnets" }]
             }
           },
           {
             "Namespace": "aws:ec2:vpc",
             "OptionName": "ELBSubnets",
             "Value" : {
-              "Fn::Select": ["0", {"Ref" : "Subnets" }]
+              "Fn::Select": ["0", {"Ref" : "PublicSubnets" }]
             }
           }
         ]
