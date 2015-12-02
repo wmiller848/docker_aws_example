@@ -16,13 +16,13 @@
    {
      "name": "access_logs",
      "host": {
-       "sourcePath": "/var/app/current/access_logs"
+       "sourcePath": "/var/app/current/nginx_access.log"
      }
    },
    {
      "name": "error_logs",
      "host": {
-       "sourcePath": "/var/app/current/error_logs"
+       "sourcePath": "/var/app/current/nginx_error.log"
      }
    }
  ],
