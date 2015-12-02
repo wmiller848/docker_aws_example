@@ -8,6 +8,12 @@
      }
    },
    {
+     "name": "runsh",
+     "host": {
+       "sourcePath": "/var/app/current/conf/run.sh"
+     }
+   },
+   {
      "name": "nginx-conf",
      "host": {
        "sourcePath": "/var/app/current/conf/nginx.conf"
@@ -24,12 +30,6 @@
      "host": {
        "sourcePath": "/var/app/current/conf/nginx_error.log"
      }
-   },
-   {
-     "name": "runsh",
-     "host": {
-       "sourcePath": "/var/app/current/conf/run.sh"
-     }
    }
  ],
  "containerDefinitions": [
@@ -44,23 +44,23 @@
      ],
      "essential": true,
      "memory": 128,
-     "portMappings": [
-       {
-         "hostPort": 1337,
-         "containerPort": 1337
-       }
-     ],
+     "portMappings": [],
      "links": [],
      "mountPoints": [
        {
          "sourceVolume": "golang-app",
          "containerPath": "/go/src/app/main.go"
+       },
+       {
+         "sourceVolume": "runsh",
+         "containerPath": "/run.sh"
        }
      ]
    },
    {
      "name": "nginx-proxy",
      "image": "nginx:1.9.7",
+     "environment": [],
      "essential": true,
      "memory": 128,
      "portMappings": [
