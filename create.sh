@@ -15,7 +15,7 @@ fi
 git archive --format zip HEAD | aws s3 cp - s3://${BUCKET_NAME}/${KEY_NAME}
 
 aws cloudformation create-stack \
-   --stack-name docker-beanstalk-multi \
+   --stack-name beanstalk-multidocker \
    --template-body file://eb.json \
    --parameters file://param.json \
    --on-failure=DO_NOTHING --capabilities=CAPABILITY_IAM
