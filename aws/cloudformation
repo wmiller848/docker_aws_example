@@ -56,7 +56,7 @@ case $1 in
   "help"|*)
   if [ ! -f param.json ]; then
 cat <<EOUSAGE
-S3_BUCKET_NAME=some_bucket S3_BUCKET_KEY=key_name STACK_NAME=some-stack-name ./cloudformation [create update]
+STACK_NAME=some-stack-name ./cloudformation [create update]
 EOUSAGE
 exit 1
 fi
