@@ -43,7 +43,7 @@ update() {
   --stack-name $STACK_NAME  \
   --template-body file://elasticbeanstalk.json \
   --parameters file://params.json \
-  --on-failure=ROLLBACK --capabilities=CAPABILITY_IAM
+  --capabilities=CAPABILITY_IAM
 }
 
 case $1 in
