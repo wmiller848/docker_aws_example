@@ -4,25 +4,31 @@
    {
      "name": "golang-app",
      "host": {
-       "sourcePath": "/var/app/current/main.go"
+       "sourcePath": "/var/app/current/src/main.go"
      }
    },
    {
      "name": "nginx-conf",
      "host": {
-       "sourcePath": "/var/app/current/nginx.conf"
+       "sourcePath": "/var/app/current/conf/nginx.conf"
      }
    },
    {
      "name": "access_logs",
      "host": {
-       "sourcePath": "/var/app/current/nginx_access.log"
+       "sourcePath": "/var/app/current/conf/nginx_access.log"
      }
    },
    {
      "name": "error_logs",
      "host": {
-       "sourcePath": "/var/app/current/nginx_error.log"
+       "sourcePath": "/var/app/current/conf/nginx_error.log"
+     }
+   },
+   {
+     "name": "runsh",
+     "host": {
+       "sourcePath": "/var/app/current/conf/run.sh"
      }
    }
  ],

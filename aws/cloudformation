@@ -1,0 +1,59 @@
+#!/bin/bash
+set -e
+
+ROOT_DIR=`git rev-parse --show-toplevel`
+
+cd $ROOT_DIR/aws
+# Ensure param.json exists
+if [ ! -f params.json ]; then
+cat <<EOUSAGE
+param.json file should exist.
+EOUSAGE
+exit 1
+fi
+cd $ROOT_DIR
+
+upload() {
+  ##
+  cd $ROOT_DIR
+  git archive --format zip HEAD | aws s3 cp - s3://${S3_BUCKET_NAME}/${S3_BUCKET_KEY}
+}
+
+create() {
+  upload
+  ##
+  cd $ROOT_DIR/aws
+  aws cloudformation create-stack \
+     --stack-name $STACK_NAME \
+     --template-body file://elasticbeanstalk.json \
+     --parameters file://params.json \
+     --on-failure=DO_NOTHING --capabilities=CAPABILITY_IAM
+}
+
+update() {
+  upload
+  ##
+  cd $ROOT_DIR/aws
+  aws cloudformation update-stack \
+  --stack-name $STACK_NAME  \
+  --template-body file://elasticbeanstalk.json \
+  --parameters file://params.json \
+  --on-failure=ROLLBACK --capabilities=CAPABILITY_IAM
+}
+
+case $1 in
+  "create")
+		create
+	;;
+  "update")
+		update
+	;;
+  "help"|*)
+  if [ ! -f param.json ]; then
+cat <<EOUSAGE
+S3_BUCKET_NAME=some_bucket S3_BUCKET_KEY=key_name STACK_NAME=some-stack-name ./cloudformation [create update]
+EOUSAGE
+exit 1
+fi
+  ;;
+esac

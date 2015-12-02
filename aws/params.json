@@ -1,0 +1,26 @@
+[
+  {
+    "ParameterKey": "KeyName",
+    "ParameterValue": "wmiller-us-east-1"
+  },
+  {
+    "ParameterKey": "VpcId",
+    "ParameterValue": "vpc-53e93437"
+  },
+  {
+    "ParameterKey": "PublicSubnets",
+    "ParameterValue": "subnet-841609f3"
+  },
+  {
+    "ParameterKey": "PrivateSubnets",
+    "ParameterValue": "subnet-851609f2"
+  },
+  {
+    "ParameterKey": "S3Key",
+    "ParameterValue": "docker-sample.zip"
+  },
+  {
+    "ParameterKey": "S3Bucket",
+    "ParameterValue": "beanstalk-docker"
+  }
+]
