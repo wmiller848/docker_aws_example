@@ -7,7 +7,7 @@ cd $ROOT_DIR/aws
 # Ensure param.json exists
 if [ ! -f params.json ]; then
 cat <<EOUSAGE
-param.json file should exist.
+params.json file should exist.
 EOUSAGE
 exit 1
 fi
@@ -27,6 +27,7 @@ create() {
      --stack-name $STACK_NAME \
      --template-body file://elasticbeanstalk.json \
      --parameters file://params.json \
+     --parameters ParameterKey=S3Bucket,ParameterValue=$S3_BUCKET_NAME ParameterKey=S3Key,ParameterValue=$S3_BUCKET_KEY \
      --on-failure=DO_NOTHING --capabilities=CAPABILITY_IAM
 }
 
@@ -38,6 +39,7 @@ update() {
   --stack-name $STACK_NAME  \
   --template-body file://elasticbeanstalk.json \
   --parameters file://params.json \
+  --parameters ParameterKey=S3Bucket,ParameterValue=$S3_BUCKET_NAME ParameterKey=S3Key,ParameterValue=$S3_BUCKET_KEY \
   --on-failure=ROLLBACK --capabilities=CAPABILITY_IAM
 }
 

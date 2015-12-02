@@ -14,13 +14,5 @@
   {
     "ParameterKey": "PrivateSubnets",
     "ParameterValue": "subnet-851609f2"
-  },
-  {
-    "ParameterKey": "S3Key",
-    "ParameterValue": "docker-sample.zip"
-  },
-  {
-    "ParameterKey": "S3Bucket",
-    "ParameterValue": "beanstalk-docker"
   }
 ]
