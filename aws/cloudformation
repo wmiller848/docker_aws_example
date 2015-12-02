@@ -11,6 +11,11 @@ params.json file should exist.
 EOUSAGE
 exit 1
 fi
+## Setup s3 info
+S3_BUCKET_NAME=`awk '/S3Bucket/{getline; print}' params.json | awk '{print $2}' | sed 's/[\"\,]//g'`
+S3_BUCKET_KEY=`awk '/S3Key/{getline; print}' params.json | awk '{print $2}' | sed 's/[\"\,]//g'`
+
+##
 cd $ROOT_DIR
 
 upload() {
@@ -27,7 +32,6 @@ create() {
      --stack-name $STACK_NAME \
      --template-body file://elasticbeanstalk.json \
      --parameters file://params.json \
-     --parameters ParameterKey=S3Bucket,ParameterValue=$S3_BUCKET_NAME ParameterKey=S3Key,ParameterValue=$S3_BUCKET_KEY \
      --on-failure=DO_NOTHING --capabilities=CAPABILITY_IAM
 }
 
@@ -39,7 +43,6 @@ update() {
   --stack-name $STACK_NAME  \
   --template-body file://elasticbeanstalk.json \
   --parameters file://params.json \
-  --parameters ParameterKey=S3Bucket,ParameterValue=$S3_BUCKET_NAME ParameterKey=S3Key,ParameterValue=$S3_BUCKET_KEY \
   --on-failure=ROLLBACK --capabilities=CAPABILITY_IAM
 }
 

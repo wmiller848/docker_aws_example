@@ -1,7 +1,11 @@
 # AWS: CloudFormation with Elastic Beanstalk, Docker Go web app
 
 ## Create the stack ##
-S3_BUCKET_NAME=beanstalk-docker S3_BUCKET_KEY=aws-docker-example.zip STACK_NAME=beanstalk-multidocker ./aws/cloudformation create
+STACK_NAME=beanstalk-multidocker ./aws/cloudformation create
+
+S3 info is pulled from params.json
 
 ## Update the stack ##
-S3_BUCKET_NAME=beanstalk-docker S3_BUCKET_KEY=aws-docker-example.zip STACK_NAME=beanstalk-multidocker ./aws/cloudformation update
+STACK_NAME=beanstalk-multidocker ./aws/cloudformation update
+
+S3 info is pulled from params.json
